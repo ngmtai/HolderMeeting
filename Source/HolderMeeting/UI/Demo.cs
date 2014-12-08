@@ -74,6 +74,7 @@ namespace UI
 
         private void LoadData()
         {
+            dgvHolder.Rows.Clear();
             var holderBusiness = new HolderBusiness();
             var data = holderBusiness.GetAlls();
 
