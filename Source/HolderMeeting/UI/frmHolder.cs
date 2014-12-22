@@ -14,7 +14,7 @@ namespace UI
 {
     public partial class frmHolder : Form
     {
-        private int _Id;
+        private int _id;
 
         public frmHolder()
         {
@@ -107,25 +107,28 @@ namespace UI
         {
             if (e.RowHandle >= 0)
             {
-                var register = (HolderDto)gvHolder.GetRow(e.RowHandle);
+                var holder = (HolderDto)gvHolder.GetRow(e.RowHandle);
 
-                _Id = register.Id;
+                if (holder != null && holder.Id > 0)
+                {
+                    _id = holder.Id;
 
-                lblCode.Text = register.Code;
-                lblName.Text = register.Name;
-                lblTotalShare.Text = register.TotalShare;
-                lblCreateDate.Text = register.CreateDate;
-                chkIsConfirm.Checked = register.IsConfirm;
-                txtAuthorizerName.Text = register.AuthorizerName;
+                    lblCode.Text = holder.Code;
+                    lblName.Text = holder.Name;
+                    lblTotalShare.Text = holder.TotalShare;
+                    lblCreateDate.Text = holder.CreateDate;
+                    chkIsConfirm.Checked = holder.IsConfirm;
+                    txtAuthorizerName.Text = holder.AuthorizerName;
 
-                if (_Id > 0)
-                    btnChange.Enabled = true;
+                    if (_id > 0)
+                        btnChange.Enabled = true;
+                }
             }
         }
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            if (_Id > 0)
+            if (_id > 0)
             {
                 if (
                     MessageBox.Show("Bạn có chắc không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
@@ -133,7 +136,7 @@ namespace UI
                 {
                     var model = new Holder
                     {
-                        Id = _Id,
+                        Id = _id,
                         IsConfirm = chkIsConfirm.Checked,
                         AuthorizerName = txtAuthorizerName.Text.Trim()
                     };
