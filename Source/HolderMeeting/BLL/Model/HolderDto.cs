@@ -18,5 +18,9 @@ namespace BLL.Model
         public string TotalShare { set; get; }
 
         public string UpdateDate { set; get; }
+
+        public string CreateDate { set; get; }
+
+        public bool IsConfirm { set; get; }
     }
 }

@@ -61,7 +61,7 @@ namespace BLL
 
                 return true;
             }
-            catch {}
+            catch { }
 
             return false;
         }
@@ -86,7 +86,7 @@ namespace BLL
 
                 return aBc != null && aBc.Id > 0;
             }
-            catch {}
+            catch { }
 
             return false;
         }
@@ -103,7 +103,7 @@ namespace BLL
         {
             try
             {
-                var aBc = _holderMeetingEntities.Holders.SingleOrDefault(t => t.Id == model.Id && t.IsActive==true);
+                var aBc = _holderMeetingEntities.Holders.SingleOrDefault(t => t.Id == model.Id && t.IsActive == true);
                 if (aBc != null)
                 {
                     aBc.AuthorizerName = model.AuthorizerName;
@@ -134,7 +134,7 @@ namespace BLL
         {
             try
             {
-                var aBc = _holderMeetingEntities.Holders.SingleOrDefault(t => t.Id == id && t.IsActive==true);
+                var aBc = _holderMeetingEntities.Holders.SingleOrDefault(t => t.Id == id && t.IsActive == true);
                 if (aBc != null) return aBc;
             }
             catch { }
@@ -149,16 +149,133 @@ namespace BLL
         /// <history>
         /// 12/6/2014 aBc: create new
         /// </history>
-        public List<Holder> GetAlls()
+        public List<Holder> GetAlls(string name, string code)
+        {
+            try
+            {
+                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true && (string.IsNullOrEmpty(name) || t.Name.Contains(name)) && (string.IsNullOrEmpty(code) || t.Code.Contains(code))).OrderBy(t => t.Name);
+                if (aBc.Any()) return aBc.ToList();
+            }
+            catch { }
+
+            return new List<Holder>();
+        }
+
+        /// <summary>
+        /// Update holder with isConfirm and AuthorizerName
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/22/2014 aBc: create new
+        /// </history>
+        public bool UpdateHolder(Holder model)
+        {
+            try
+            {
+                var aBc = _holderMeetingEntities.Holders.SingleOrDefault(t => t.Id == model.Id);
+                if (aBc != null)
+                {
+                    aBc.IsConfirm = model.IsConfirm;
+                    aBc.AuthorizerName = model.AuthorizerName;
+                    aBc.UpdateDate = DateTime.Now;
+
+                    _holderMeetingEntities.SaveChanges();
+                    return true;
+                }
+            }
+            catch { }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Get all Code in holder
+        /// </summary>
+        /// <returns></returns>
+        /// <history>
+        /// 12/22/2014 aBc: create new
+        /// </history>
+        public List<string> GetAllsCode()
+        {
+            try
+            {
+                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true).OrderBy(t => t.Code);
+
+                if (aBc.Any())
+                    return aBc.Select(t => t.Code).ToList();
+            }
+            catch { }
+
+            return new List<string>();
+        }
+
+        /// <summary>
+        /// Get all Name in holder
+        /// </summary>
+        /// <returns></returns>
+        /// <history>
+        /// 12/22/2014 aBc: create new
+        /// </history>
+        public List<string> GetAllsName()
         {
             try
             {
                 var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true).OrderBy(t => t.Name);
-                if (aBc.Any()) return aBc.ToList();
-            }
-            catch {}
 
-            return new List<Holder>();
+                if (aBc.Any())
+                    return aBc.Select(t => t.Name).ToList();
+            }
+            catch { }
+
+            return new List<string>();
+        }
+
+        /// <summary>
+        /// Get total holder confirm and not confirm
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/22/2014 aBc: create new
+        /// </history>
+        public int TotalConfirm(bool? bl)
+        {
+            try
+            {
+                return _holderMeetingEntities.Holders.Count(t => t.IsActive == true && (bl == null || t.IsConfirm == bl));
+            }
+            catch { }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Get total share isConfirm
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/22/2014 aBc: create new
+        /// </history>
+        public decimal TotalShareIsConfirm(bool? bl)
+        {
+            try
+            {
+                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true && (bl == null || t.IsConfirm == bl)).Select(t => t.TotalShare);
+
+                if (aBc.Any())
+                {
+                    decimal count = 0;
+                    foreach (var item in aBc)
+                        count += item.HasValue ? item.Value : 0;
+
+                    return count;
+                }
+            }
+            catch { }
+
+            return 0;
         }
     }
 }
