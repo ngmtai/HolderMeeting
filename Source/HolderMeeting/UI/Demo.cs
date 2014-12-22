@@ -76,7 +76,7 @@ namespace UI
         {
             dgvHolder.Rows.Clear();
             var holderBusiness = new HolderBusiness();
-            var data = holderBusiness.GetAlls();
+            var data = holderBusiness.GetAlls(string.Empty, string.Empty);
 
             if (data.Any())
                 for (var i = 0; i < data.Count; i++)
