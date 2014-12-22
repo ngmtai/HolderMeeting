@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using BLL.Model;
 using DAL;
 
 namespace BLL
@@ -41,6 +42,53 @@ namespace BLL
             }
 
             return -1;
+        }
+
+        /// <summary>
+        /// Save list Holder
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/21/2014 aBc: create new
+        /// </history>
+        public bool Saves(List<Holder> lst)
+        {
+            try
+            {
+                _holderMeetingEntities.Holders.AddRange(lst);
+                _holderMeetingEntities.SaveChanges();
+
+                return true;
+            }
+            catch {}
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check code and name and authorizerName is exist
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="authorizerName"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/21/2014 aBc: create new
+        /// </history>
+        public bool CheckExist(string code, string name, string authorizerName)
+        {
+            try
+            {
+                var aBc =
+                    _holderMeetingEntities.Holders.FirstOrDefault(
+                        t => t.Code.Equals(code) && t.Name.Equals(name) && t.AuthorizerName.Equals(authorizerName));
+
+                return aBc != null && aBc.Id > 0;
+            }
+            catch {}
+
+            return false;
         }
 
         /// <summary>
