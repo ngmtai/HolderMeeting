@@ -38,6 +38,7 @@
     <EntitySetMapping Name="Holders">
       <EntityTypeMapping TypeName="HolderMeetingModel.Holder">
         <MappingFragment StoreEntitySet="Holder">
+          <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Name" ColumnName="Name" />

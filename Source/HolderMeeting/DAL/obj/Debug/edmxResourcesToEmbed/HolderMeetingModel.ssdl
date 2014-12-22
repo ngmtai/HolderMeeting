@@ -41,6 +41,7 @@
     <Property Name="TotalShare" Type="decimal" Precision="18" Scale="0" />
     <Property Name="AuthorizerName" Type="nvarchar" MaxLength="200" />
     <Property Name="IsActive" Type="bit" />
+    <Property Name="IsConfirm" Type="bit" />
     <Property Name="CompanyId" Type="int" />
     <Property Name="CreateDate" Type="date" />
     <Property Name="CreateUser" Type="nvarchar" MaxLength="100" />

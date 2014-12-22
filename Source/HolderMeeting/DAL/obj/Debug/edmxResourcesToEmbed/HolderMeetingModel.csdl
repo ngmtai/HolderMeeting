@@ -53,6 +53,7 @@
     <Property Name="UpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Company" Relationship="Self.FK_Holder_Company" FromRole="Holder" ToRole="Company" />
     <NavigationProperty Name="Holder_Vote" Relationship="Self.FK_Holder_Vote_Holder" FromRole="Holder" ToRole="Holder_Vote" />
+    <Property Name="IsConfirm" Type="Boolean" />
   </EntityType>
   <EntityType Name="Holder_Vote">
     <Key>

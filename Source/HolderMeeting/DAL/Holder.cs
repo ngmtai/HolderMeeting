@@ -30,6 +30,7 @@ namespace DAL
         public string CreateUser { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateUser { get; set; }
+        public Nullable<bool> IsConfirm { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual ICollection<Holder_Vote> Holder_Vote { get; set; }
