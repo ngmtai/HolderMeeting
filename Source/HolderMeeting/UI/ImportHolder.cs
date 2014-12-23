@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using BLL;
 using DAL;
+using UI.Common;
 
 namespace UI
 {
@@ -134,6 +135,12 @@ namespace UI
 
             if (dt != null)
             {
+                var cb = new CompanyBusiness();
+                var companyModel = cb.Detail();
+                var companyId = 0;
+                if (companyModel != null && companyModel.Id > 0)
+                    companyId = companyModel.Id;
+
                 var lstHolder = new List<Holder>();
                 decimal totalShare = 0;
                 for (var i = 0; i < dt.Rows.Count; i++)
@@ -157,7 +164,7 @@ namespace UI
                             TotalShare = totalShare,
                             IsActive = true,
                             IsConfirm = false,
-                            CompanyId = 1,
+                            CompanyId = companyId,
                             CreateDate = DateTime.Now,
                             CreateUser = "aBc"
                         });

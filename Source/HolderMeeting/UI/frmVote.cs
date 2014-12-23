@@ -26,6 +26,8 @@ namespace UI
         void LoadData()
         {
             memDisplayName.Text = "";
+            chkIsActive.Checked = false;
+            numOrder.Text = string.Empty;
             _id = 0;
 
             var vb = new VoteBusiness();
@@ -56,7 +58,8 @@ namespace UI
                     {
                         DisplayName = memDisplayName.Text.Trim(),
                         IsActive = chkIsActive.Checked,
-                        CreateDate = DateTime.Now
+                        CreateDate = DateTime.Now,
+                        Order = int.Parse(numOrder.Text)
                     };
 
                     if (vb.Save(model) > 0)
@@ -64,7 +67,7 @@ namespace UI
                 }
                 else
                 {
-                    if (vb.Update(_id, memDisplayName.Text.Trim(), chkIsActive.Checked))
+                    if (vb.Update(_id, memDisplayName.Text.Trim(), chkIsActive.Checked, int.Parse(numOrder.Text)))
                         MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -87,6 +90,8 @@ namespace UI
                 {
                     _id = vote.Id;
                     memDisplayName.Text = vote.DisplayName;
+                    if (vote.IsActive != null) chkIsActive.Checked = vote.IsActive.Value;
+                    if (vote.Order != null) numOrder.Text = vote.Order.Value.ToString();
                 }
             }
         }
