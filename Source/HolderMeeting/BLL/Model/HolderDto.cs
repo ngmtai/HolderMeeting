@@ -22,5 +22,7 @@ namespace BLL.Model
         public string CreateDate { set; get; }
 
         public bool IsConfirm { set; get; }
+
+        public bool IsVote { set; get; }
     }
 }

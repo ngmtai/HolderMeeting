@@ -49,7 +49,7 @@ namespace BLL
         {
             try
             {
-                return _holderMeetingEntities.Votes.ToList();
+                return _holderMeetingEntities.Votes.OrderBy(t => t.Order).ToList();
             }
             catch { }
 
@@ -84,11 +84,12 @@ namespace BLL
         /// <param name="voteId"></param>
         /// <param name="displayName"></param>
         /// <param name="isActive"></param>
+        /// <param name="order"></param>
         /// <returns></returns>
         /// <history>
         /// 12/22/2014 aBc: create new
         /// </history>
-        public bool Update(int voteId, string displayName, bool isActive)
+        public bool Update(int voteId, string displayName, bool isActive, int order)
         {
             try
             {
@@ -98,6 +99,7 @@ namespace BLL
                     aBc.DisplayName = displayName;
                     aBc.UpdateDate = DateTime.Now;
                     aBc.IsActive = isActive;
+                    aBc.Order = order;
 
                     _holderMeetingEntities.SaveChanges();
                     return true;
@@ -132,7 +134,7 @@ namespace BLL
                     return true;
                 }
             }
-            catch {}
+            catch { }
 
             return false;
         }
@@ -173,6 +175,24 @@ namespace BLL
             catch { }
 
             return false;
+        }
+
+        /// <summary>
+        /// Count vote is active
+        /// </summary>
+        /// <returns></returns>
+        /// <history>
+        /// 12/23/2014 aBc: create new
+        /// </history>
+        public int CountVoteIsActive()
+        {
+            try
+            {
+                return _holderMeetingEntities.Votes.Count(t => t.IsActive == true);
+            }
+            catch { }
+
+            return 0;
         }
     }
 }

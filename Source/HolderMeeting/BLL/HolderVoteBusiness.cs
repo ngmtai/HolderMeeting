@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using DAL;
+
+namespace BLL
+{
+    public class HolderVoteBusiness
+    {
+        private readonly HolderMeetingEntities _holderMeetingEntities;
+
+        public HolderVoteBusiness()
+        {
+            _holderMeetingEntities = new HolderMeetingEntities();
+        }
+
+        /// <summary>
+        /// Count holder vote
+        /// </summary>
+        /// <param name="holderId"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/23/2014 aBc: create new
+        /// </history>
+        public int CountVoteByHolder(int holderId)
+        {
+            try
+            {
+                return
+                    _holderMeetingEntities.Holder_Vote.Count(t => t.IsActive == true && t.HolderId == holderId);
+            }
+            catch (Exception)
+            {
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Get total holder is vote
+        /// </summary>
+        /// <returns></returns>
+        /// <history>
+        /// 12/23/2014 aBc: create new
+        /// </history>
+        public int TotalHolderVote()
+        {
+            try
+            {
+                return _holderMeetingEntities.Holder_Vote.Where(t => t.IsActive == true).Select(t => t.HolderId).Distinct().Count();
+            }
+            catch { }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Get total shared is vote
+        /// </summary>
+        /// <returns></returns>
+        /// <history>
+        /// 12/23/2014 aBc: create new
+        /// </history>
+        public decimal TotalShareIsVote()
+        {
+            try
+            {
+                return _holderMeetingEntities.Holder_Vote.Where(t => t.IsActive == true).Sum(t => t.TotalShare.Value);
+            }
+            catch { }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Get current share is holder
+        /// </summary>
+        /// <param name="holderId"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/23/2014 aBc: create new
+        /// </history>
+        public decimal TotalSharedIsVote(int holderId)
+        {
+            try
+            {
+                return
+                    _holderMeetingEntities.Holder_Vote.Where(t => t.IsActive == true && t.HolderId == holderId)
+                        .Sum(t => t.TotalShare.Value);
+            }
+            catch { }
+
+            return 0;
+        }
+    }
+}
