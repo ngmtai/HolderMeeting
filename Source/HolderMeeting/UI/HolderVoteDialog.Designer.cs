@@ -31,7 +31,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.gcVote = new DevExpress.XtraEditors.GroupControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -50,7 +50,7 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVote)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -59,16 +59,16 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(866, 136);
+            this.panelControl1.Size = new System.Drawing.Size(670, 136);
             this.panelControl1.TabIndex = 0;
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.groupControl2);
+            this.panelControl2.Controls.Add(this.gcVote);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 136);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(866, 361);
+            this.panelControl2.Size = new System.Drawing.Size(670, 391);
             this.panelControl2.TabIndex = 1;
             // 
             // groupControl1
@@ -90,18 +90,18 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(862, 132);
+            this.groupControl1.Size = new System.Drawing.Size(666, 132);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Chi tiết";
             // 
-            // groupControl2
+            // gcVote
             // 
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(2, 2);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(862, 357);
-            this.groupControl2.TabIndex = 0;
-            this.groupControl2.Text = "Biểu quyết";
+            this.gcVote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcVote.Location = new System.Drawing.Point(2, 2);
+            this.gcVote.Name = "gcVote";
+            this.gcVote.Size = new System.Drawing.Size(666, 387);
+            this.gcVote.TabIndex = 0;
+            this.gcVote.Text = "Biểu quyết";
             // 
             // labelControl1
             // 
@@ -129,7 +129,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(349, 34);
+            this.labelControl4.Location = new System.Drawing.Point(278, 34);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(85, 13);
             this.labelControl4.TabIndex = 3;
@@ -137,7 +137,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(349, 64);
+            this.labelControl5.Location = new System.Drawing.Point(278, 64);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(92, 13);
             this.labelControl5.TabIndex = 4;
@@ -169,7 +169,7 @@
             // 
             // lblTotalShared
             // 
-            this.lblTotalShared.Location = new System.Drawing.Point(464, 34);
+            this.lblTotalShared.Location = new System.Drawing.Point(393, 34);
             this.lblTotalShared.Name = "lblTotalShared";
             this.lblTotalShared.Size = new System.Drawing.Size(58, 13);
             this.lblTotalShared.TabIndex = 8;
@@ -177,7 +177,7 @@
             // 
             // lblCurrentShared
             // 
-            this.lblCurrentShared.Location = new System.Drawing.Point(464, 64);
+            this.lblCurrentShared.Location = new System.Drawing.Point(393, 64);
             this.lblCurrentShared.Name = "lblCurrentShared";
             this.lblCurrentShared.Size = new System.Drawing.Size(71, 13);
             this.lblCurrentShared.TabIndex = 9;
@@ -185,16 +185,17 @@
             // 
             // btnVote
             // 
-            this.btnVote.Location = new System.Drawing.Point(664, 34);
+            this.btnVote.Location = new System.Drawing.Point(552, 34);
             this.btnVote.Name = "btnVote";
             this.btnVote.Size = new System.Drawing.Size(99, 32);
             this.btnVote.TabIndex = 10;
             this.btnVote.Text = "Biểu quyết";
+            this.btnVote.Click += new System.EventHandler(this.btnVote_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(664, 78);
+            this.btnCancel.Location = new System.Drawing.Point(552, 78);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 32);
             this.btnCancel.TabIndex = 11;
@@ -204,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 497);
+            this.ClientSize = new System.Drawing.Size(670, 527);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Name = "HolderVoteDialog";
@@ -217,7 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVote)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,6 +240,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl gcVote;
     }
 }

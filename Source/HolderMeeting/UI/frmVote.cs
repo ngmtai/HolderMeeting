@@ -31,7 +31,7 @@ namespace UI
             _id = 0;
 
             var vb = new VoteBusiness();
-            gridVote.DataSource = vb.GetAlls();
+            gridVote.DataSource = vb.GetAlls(null);
         }
 
         #endregion

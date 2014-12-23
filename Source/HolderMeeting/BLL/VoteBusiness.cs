@@ -45,11 +45,11 @@ namespace BLL
         /// <history>
         /// 12/22/2014 aBc: create new
         /// </history>
-        public List<Vote> GetAlls()
+        public List<Vote> GetAlls(bool? isActive)
         {
             try
             {
-                return _holderMeetingEntities.Votes.OrderBy(t => t.Order).ToList();
+                return _holderMeetingEntities.Votes.Where(t => isActive.HasValue == false || t.IsActive == isActive.Value).OrderBy(t => t.Order).ToList();
             }
             catch { }
 
