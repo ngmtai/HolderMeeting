@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.gridDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridHolderVote = new DevExpress.XtraGrid.GridControl();
+            this.holderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.holderMeetingDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.holderMeetingDataSet = new UI.HolderMeetingDataSet();
             this.gvHolderVote = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -38,6 +49,9 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnRowVote = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.stTotal = new System.Windows.Forms.StatusStrip();
             this.tstt = new System.Windows.Forms.ToolStripStatusLabel();
@@ -48,9 +62,16 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtSCode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.holderTableAdapter = new UI.HolderMeetingDataSetTableAdapters.HolderTableAdapter();
+            this.holderVoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.holder_VoteTableAdapter = new UI.HolderMeetingDataSetTableAdapters.Holder_VoteTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHolderVote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderMeetingDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderMeetingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHolderVote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRowVote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.stTotal.SuspendLayout();
@@ -60,45 +81,114 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderVoteBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gridDetail
+            // 
+            this.gridDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14});
+            this.gridDetail.GridControl = this.gridHolderVote;
+            this.gridDetail.Name = "gridDetail";
+            this.gridDetail.OptionsBehavior.Editable = false;
+            this.gridDetail.OptionsView.ShowGroupPanel = false;
+            this.gridDetail.ViewCaption = "Chi tiết biểu quyết";
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Biểu quyết";
+            this.gridColumn11.FieldName = "VoteName";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 0;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Trả lời";
+            this.gridColumn12.FieldName = "AnswerName";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 1;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "Số lượng cổ phiếu";
+            this.gridColumn13.FieldName = "TotalShare";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 2;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "Ngày tạo";
+            this.gridColumn14.FieldName = "CreateDate";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 3;
             // 
             // gridHolderVote
             // 
             this.gridHolderVote.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gridHolderVote.DataSource = this.holderBindingSource;
             this.gridHolderVote.Dock = System.Windows.Forms.DockStyle.Fill;
+            gridLevelNode1.LevelTemplate = this.gridDetail;
+            gridLevelNode1.RelationName = "FK_Holder_Vote_Holder";
+            this.gridHolderVote.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
             this.gridHolderVote.Location = new System.Drawing.Point(2, 2);
             this.gridHolderVote.MainView = this.gvHolderVote;
             this.gridHolderVote.Name = "gridHolderVote";
-            this.gridHolderVote.Size = new System.Drawing.Size(788, 374);
+            this.gridHolderVote.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.btnRowVote});
+            this.gridHolderVote.Size = new System.Drawing.Size(822, 314);
             this.gridHolderVote.TabIndex = 0;
             this.gridHolderVote.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvHolderVote});
+            this.gvHolderVote,
+            this.gridDetail});
+            // 
+            // holderBindingSource
+            // 
+            this.holderBindingSource.DataMember = "Holder";
+            this.holderBindingSource.DataSource = this.holderMeetingDataSetBindingSource;
+            // 
+            // holderMeetingDataSetBindingSource
+            // 
+            this.holderMeetingDataSetBindingSource.DataSource = this.holderMeetingDataSet;
+            this.holderMeetingDataSetBindingSource.Position = 0;
+            // 
+            // holderMeetingDataSet
+            // 
+            this.holderMeetingDataSet.DataSetName = "HolderMeetingDataSet";
+            this.holderMeetingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gvHolderVote
             // 
             this.gvHolderVote.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7,
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6,
-            this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn9});
+            this.gridColumn9,
+            this.gridColumn10});
             this.gvHolderVote.GridControl = this.gridHolderVote;
             this.gvHolderVote.Name = "gvHolderVote";
             this.gvHolderVote.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gvHolderVote.OptionsBehavior.Editable = false;
             this.gvHolderVote.OptionsCustomization.AllowGroup = false;
             this.gvHolderVote.OptionsView.ShowGroupPanel = false;
-            this.gvHolderVote.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvHolder_RowClick);
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Mã cổ đông";
             this.gridColumn1.FieldName = "Code";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -107,6 +197,7 @@
             this.gridColumn2.Caption = "Tên";
             this.gridColumn2.FieldName = "Name";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -115,6 +206,7 @@
             this.gridColumn3.Caption = "Số lượng cổ phiếu";
             this.gridColumn3.FieldName = "TotalShare";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
@@ -123,6 +215,7 @@
             this.gridColumn4.Caption = "Người ủy quyền";
             this.gridColumn4.FieldName = "AuthorizerName";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             // 
@@ -131,44 +224,72 @@
             this.gridColumn5.Caption = "Tham dự?";
             this.gridColumn5.FieldName = "IsConfirm";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Ngày cập nhật";
             this.gridColumn6.FieldName = "UpdateDate";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 4;
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Id";
             this.gridColumn7.FieldName = "Id";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "CreateDate";
             this.gridColumn8.FieldName = "CreateDate";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Biểu quyết?";
+            this.gridColumn9.FieldName = "IsVote";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Biểu quyết";
+            this.gridColumn10.ColumnEdit = this.btnRowVote;
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 5;
+            // 
+            // btnRowVote
+            // 
+            this.btnRowVote.AutoHeight = false;
+            this.btnRowVote.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Biểu quyết", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::UI.Properties.Resources.edittask_32x32, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.btnRowVote.Name = "btnRowVote";
+            this.btnRowVote.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnRowVote.Click += new System.EventHandler(this.btnRowVote_Click);
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.stTotal);
             this.panelControl1.Controls.Add(this.gridHolderVote);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 114);
+            this.panelControl1.Location = new System.Drawing.Point(0, 113);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(792, 378);
+            this.panelControl1.Size = new System.Drawing.Size(826, 318);
             this.panelControl1.TabIndex = 1;
             // 
             // stTotal
             // 
             this.stTotal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tstt});
-            this.stTotal.Location = new System.Drawing.Point(2, 354);
+            this.stTotal.Location = new System.Drawing.Point(2, 294);
             this.stTotal.Name = "stTotal";
-            this.stTotal.Size = new System.Drawing.Size(788, 22);
+            this.stTotal.Size = new System.Drawing.Size(822, 22);
             this.stTotal.TabIndex = 1;
             this.stTotal.Text = "aBc";
             // 
@@ -184,7 +305,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(792, 108);
+            this.panelControl2.Size = new System.Drawing.Size(826, 108);
             this.panelControl2.TabIndex = 2;
             // 
             // groupControl1
@@ -197,7 +318,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(788, 104);
+            this.groupControl1.Size = new System.Drawing.Size(822, 104);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Tìm kiếm";
             // 
@@ -240,26 +361,37 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Mã cổ đông:";
             // 
-            // gridColumn9
+            // holderTableAdapter
             // 
-            this.gridColumn9.Caption = "Biểu quyết?";
-            this.gridColumn9.FieldName = "IsVote";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
+            this.holderTableAdapter.ClearBeforeFill = true;
+            // 
+            // holderVoteBindingSource
+            // 
+            this.holderVoteBindingSource.DataMember = "Holder_Vote";
+            this.holderVoteBindingSource.DataSource = this.holderMeetingDataSetBindingSource;
+            // 
+            // holder_VoteTableAdapter
+            // 
+            this.holder_VoteTableAdapter.ClearBeforeFill = true;
             // 
             // frmHolder_Vote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 492);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(826, 431);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Name = "frmHolder_Vote";
             this.Text = "Danh sách cổ đông biểu quyết";
             this.Load += new System.EventHandler(this.frmHolder_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHolderVote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderMeetingDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderMeetingDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHolderVote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRowVote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
@@ -272,6 +404,7 @@
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holderVoteBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -299,6 +432,19 @@
         private System.Windows.Forms.StatusStrip stTotal;
         private System.Windows.Forms.ToolStripStatusLabel tstt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridDetail;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnRowVote;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private System.Windows.Forms.BindingSource holderMeetingDataSetBindingSource;
+        private HolderMeetingDataSet holderMeetingDataSet;
+        private System.Windows.Forms.BindingSource holderBindingSource;
+        private HolderMeetingDataSetTableAdapters.HolderTableAdapter holderTableAdapter;
+        private System.Windows.Forms.BindingSource holderVoteBindingSource;
+        private HolderMeetingDataSetTableAdapters.Holder_VoteTableAdapter holder_VoteTableAdapter;
 
     }
 }

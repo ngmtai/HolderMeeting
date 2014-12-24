@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using BLL;
 using BLL.Model;
 using DAL;
+using UI.HolderMeetingDataSetTableAdapters;
 
 namespace UI
 {
@@ -65,7 +66,27 @@ namespace UI
                 });
             }
 
+
             gridHolderVote.DataSource = lstHolder.OrderBy(t => t.IsVote);
+
+            var lst = new List<HolderVoteDto>()
+            {
+                new HolderVoteDto()
+                {
+                    AnswerName = "aBc",
+                    CreateDate = DateTime.Now,
+                    TotalShared = 10,
+                    VoteName = "def"
+                },
+                new HolderVoteDto()
+                {
+                    AnswerName = "aBc",
+                    CreateDate = DateTime.Now,
+                    TotalShared = 10,
+                    VoteName = "def"
+                }
+            };
+
         }
 
         #endregion
@@ -74,7 +95,10 @@ namespace UI
 
         private void frmHolder_Load(object sender, EventArgs e)
         {
-            LoadData(string.Empty, string.Empty);
+            holderTableAdapter.Fill(holderMeetingDataSet.Holder);
+            holder_VoteTableAdapter.Fill(holderMeetingDataSet.Holder_Vote);
+
+            //LoadData(string.Empty, string.Empty);
 
             #region autocomplete
 
@@ -104,35 +128,29 @@ namespace UI
             LoadStatusStrip();
         }
 
-        private void gvHolder_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            if (e.RowHandle >= 0)
-            {
-                var holder = (HolderDto)gvHolderVote.GetRow(e.RowHandle);
-
-                if (holder != null && holder.Id > 0)
-                {
-                    var hvb = new HolderVoteBusiness();
-                    var vb = new VoteBusiness();
-
-                    if (hvb.CountVoteByHolder(holder.Id) <= vb.CountVoteIsActive())
-                    {
-                        var frmDialog = new HolderVoteDialog {_holderId = holder.Id};
-                        var result = frmDialog.ShowDialog();
-                        if (result == DialogResult.OK)
-                        {
-                            
-                        }
-                    }
-                    else
-                        MessageBox.Show("Cổ đông \"" + holder.Name + "\" đã biểu quyết hoàn tất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadData(txtSName.Text.Trim(), txtSCode.Text.Trim());
+        }
+
+        private void btnRowVote_Click(object sender, EventArgs e)
+        {
+            var dataRowView = (DataRowView)gvHolderVote.GetRow(gvHolderVote.FocusedRowHandle);
+            var holder = dataRowView.Row.Table.Rows.Cast<HolderMeetingDataSet.HolderRow>().ToList()[0];
+            
+            var vb = new VoteBusiness();
+            var hvb = new HolderVoteBusiness();
+
+            if (holder != null && holder.Id > 0)
+                if (hvb.CountVoteByHolder(holder.Id) < vb.CountVoteIsActive())
+                {
+                    var frmDialog = new HolderVoteDialog { _holderId = holder.Id };
+                    var result = frmDialog.ShowDialog();
+                    if (result == DialogResult.OK)
+                        LoadData(txtSName.Text.Trim(), txtSCode.Text.Trim());
+                }
+                else
+                    MessageBox.Show("Cổ đông \"" + holder.Name + "\" đã biểu quyết hoàn tất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion

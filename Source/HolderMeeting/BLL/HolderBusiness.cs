@@ -153,7 +153,7 @@ namespace BLL
         {
             try
             {
-                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true && (string.IsNullOrEmpty(name) || t.Name.Contains(name)) && (string.IsNullOrEmpty(code) || t.Code.Contains(code))).OrderBy(t => t.Name);
+                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true && t.IsConfirm == true && (string.IsNullOrEmpty(name) || t.Name.Contains(name)) && (string.IsNullOrEmpty(code) || t.Code.Contains(code))).OrderBy(t => t.Name);
                 if (aBc.Any()) return aBc.ToList();
             }
             catch { }

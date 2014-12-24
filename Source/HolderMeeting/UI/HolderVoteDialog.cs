@@ -135,29 +135,14 @@ namespace UI
                 TabIndex = id * 10 + 5
             };
 
+            mtb.Leave += mtb_Leave;
+
             _loY = mtb.Location.Y + 30;
 
             gcVote.Controls.Add(lblVote);
             gcVote.Controls.Add(groupBox);
             gcVote.Controls.Add(mtb);
             gcVote.Controls.Add(labelControl);
-        }
-
-        void rad_CheckedChanged(object sender, EventArgs e)
-        {
-            var rad = (RadioButton)sender;
-            var txt = (TextBox)Controls.Find(rad.Name.Replace("rad", "txt").Replace("Yes", "Other").Replace("No", "Other"), true)[0];
-
-            txt.Enabled = false;
-            txt.Text = string.Empty;
-        }
-
-        void radOther_CheckedChanged(object sender, EventArgs e)
-        {
-            var rad = (RadioButton)sender;
-            var txt = (TextBox)Controls.Find(rad.Name.Replace("rad", "txt"), true)[0];
-
-            txt.Enabled = true;
         }
 
         #endregion
@@ -177,35 +162,126 @@ namespace UI
             var lstHolderVote = new List<Holder_Vote>();
             var vb = new VoteBusiness();
             var votes = vb.GetAlls(true);
+            var msg = string.Empty;
+            decimal shared = 0;
+
             if (votes.Any())
                 for (var i = 0; i < votes.Count; i++)
                 {
                     var holderVote = new Holder_Vote();
                     var radYes = (RadioButton)Controls.Find("rad" + votes[i].Id + "Yes", true)[0];
                     if (radYes.Checked)
-                        holderVote.AnswerType = (int)MyConstant.AnswerType.Yes;
-                    var radNo = (RadioButton)Controls.Find("rad" + votes[i].Id + "No", true)[0];
-                    if (radNo.Checked)
-                        holderVote.AnswerType = (int)MyConstant.AnswerType.No;
-
-                    var radOther = (RadioButton)Controls.Find("rad" + votes[i].Id + "Other", true)[0];
-                    if (radOther.Checked)
                     {
-                        holderVote.AnswerType = (int)MyConstant.AnswerType.Other;
-                        var txt = (TextBox)Controls.Find("txt" + votes[i].Id + "Other", true)[0];
-
-                        holderVote.AnswerName = txt.Text.Trim();
+                        holderVote.AnswerType = (int)MyConstant.AnswerType.Yes;
+                        holderVote.AnswerName = "Đồng ý";
+                    }
+                    else
+                    {
+                        var radNo = (RadioButton)Controls.Find("rad" + votes[i].Id + "No", true)[0];
+                        if (radNo.Checked)
+                        {
+                            holderVote.AnswerType = (int)MyConstant.AnswerType.No;
+                            holderVote.AnswerName = "Không đồng ý";
+                        }
+                        else
+                        {
+                            var radOther = (RadioButton)Controls.Find("rad" + votes[i].Id + "Other", true)[0];
+                            if (radOther.Checked)
+                            {
+                                holderVote.AnswerType = (int)MyConstant.AnswerType.Other;
+                                var txt = (TextBox)Controls.Find("txt" + votes[i].Id + "Other", true)[0];
+                                if (string.IsNullOrEmpty(txt.Text))
+                                    msg += "\nBiểu quyết " + (i + 1) + ":\n - Phải nhập ý kiến khác.";
+                                else
+                                    holderVote.AnswerName = txt.Text.Trim();
+                            }
+                            else
+                                msg += "\nBiểu quyết " + (i + 1) + ":\n - Chưa chọn câu trả lời.";
+                        }
                     }
 
-                    var mtb = (MaskedTextBox)Controls.Find("mtb" + votes[i].Id, true)[0];
-                    holderVote.TotalShare = decimal.Parse(mtb.Text);
+                    if (holderVote.AnswerType.HasValue)
+                    {
+                        var mtb = (MaskedTextBox)Controls.Find("mtb" + votes[i].Id, true)[0];
+                        var totalShare = mtb.Text.Replace(",", "");
+                        if (string.IsNullOrEmpty(totalShare.Trim()))
+                            msg += "\nBiểu quyết " + (i + 1) + ":\n - Phải nhập số lượng cổ phiếu biểu quyết.";
+                        else
+                        {
+                            holderVote.TotalShare = decimal.Parse(totalShare.Trim());
 
-                    holderVote.VoteId = votes[i].Id;
-                    holderVote.IsActive = true;
-                    holderVote.CreateDate = DateTime.Now;
+                            shared += holderVote.TotalShare.Value;
 
-                    lstHolderVote.Add(holderVote);
+                            if (shared <= _currentShared)
+                            {
+                                holderVote.VoteId = votes[i].Id;
+                                holderVote.IsActive = true;
+                                holderVote.CreateDate = DateTime.Now;
+                                holderVote.HolderId = _holderId;
+
+                                lstHolderVote.Add(holderVote);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Số lượng cổ phiếu vượt quá số lượng cổ phiếu hiện có", "Thông báo",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
                 }
+
+            if (!string.IsNullOrEmpty(msg))
+            {
+                MessageBox.Show(msg, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var hvb = new HolderVoteBusiness();
+            if (hvb.Saves(lstHolderVote))
+            {
+                MessageBox.Show("Biểu quyết thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.Yes;
+            }
+            else
+                MessageBox.Show("Lỗi, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        void rad_CheckedChanged(object sender, EventArgs e)
+        {
+            var rad = (RadioButton)sender;
+            var txt = (TextBox)Controls.Find(rad.Name.Replace("rad", "txt").Replace("Yes", "Other").Replace("No", "Other"), true)[0];
+
+            txt.Enabled = false;
+            txt.Text = string.Empty;
+        }
+
+        void radOther_CheckedChanged(object sender, EventArgs e)
+        {
+            var rad = (RadioButton)sender;
+            var txt = (TextBox)Controls.Find(rad.Name.Replace("rad", "txt"), true)[0];
+
+            txt.Enabled = true;
+        }
+
+        void mtb_Leave(object sender, EventArgs e)
+        {
+            var vb = new VoteBusiness();
+            var votes = vb.GetAlls(true);
+
+            decimal shared = 0;
+
+            if (votes.Any())
+                for (var i = 0; i < votes.Count; i++)
+                {
+                    var mtb = (MaskedTextBox)Controls.Find("mtb" + votes[i].Id, true)[0];
+                    var totalShare = mtb.Text.Replace(",", "");
+                    if (!string.IsNullOrEmpty(totalShare.Trim()))
+                        shared += decimal.Parse(totalShare);
+                }
+
+            lblCurrentShared.Text = string.Format("{0:#,###}", _currentShared > shared ? _currentShared - shared : 0);
+        }
+
     }
 }

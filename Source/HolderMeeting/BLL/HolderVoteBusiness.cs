@@ -93,5 +93,27 @@ namespace BLL
 
             return 0;
         }
+
+        /// <summary>
+        /// Add list holder_vote
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <returns></returns>
+        /// <history>
+        /// 12/24/2014 aBc: create new
+        /// </history>
+        public bool Saves(List<Holder_Vote> lst)
+        {
+            try
+            {
+                _holderMeetingEntities.Holder_Vote.AddRange(lst);
+                _holderMeetingEntities.SaveChanges();
+
+                return true;
+            }
+            catch {}
+
+            return false;
+        }
     }
 }
