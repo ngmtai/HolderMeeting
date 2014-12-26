@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using BLL.Common;
 using BLL.Model;
 using DAL;
 
@@ -17,7 +18,7 @@ namespace BLL
 
         public HolderBusiness()
         {
-            _holderMeetingEntities = new HolderMeetingEntities();
+            _holderMeetingEntities = new HolderMeetingEntities(MyConstant.Config.connectionString);
         }
 
         /// <summary>
@@ -149,11 +150,11 @@ namespace BLL
         /// <history>
         /// 12/6/2014 aBc: create new
         /// </history>
-        public List<Holder> GetAlls(string name, string code)
+        public List<Holder> GetAlls(string name, string code, bool? isConfirm)
         {
             try
             {
-                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true && t.IsConfirm == true && (string.IsNullOrEmpty(name) || t.Name.Contains(name)) && (string.IsNullOrEmpty(code) || t.Code.Contains(code))).OrderBy(t => t.Name);
+                var aBc = _holderMeetingEntities.Holders.Where(t => t.IsActive == true && (isConfirm == null || t.IsConfirm == isConfirm) && (string.IsNullOrEmpty(name) || t.Name.Contains(name)) && (string.IsNullOrEmpty(code) || t.Code.Contains(code))).OrderBy(t => t.Name);
                 if (aBc.Any()) return aBc.ToList();
             }
             catch { }

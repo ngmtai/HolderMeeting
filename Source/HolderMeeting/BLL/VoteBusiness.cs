@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using BLL.Common;
 using DAL;
 
 namespace BLL
@@ -13,7 +14,7 @@ namespace BLL
 
         public VoteBusiness()
         {
-            _holderMeetingEntities = new HolderMeetingEntities();
+            _holderMeetingEntities = new HolderMeetingEntities(MyConstant.Config.connectionString);
         }
 
         /// <summary>
