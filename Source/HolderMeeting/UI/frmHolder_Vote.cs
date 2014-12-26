@@ -44,7 +44,7 @@ namespace UI
         void LoadData(string name, string code)
         {
             var holderBusiness = new HolderBusiness();
-            var data = holderBusiness.GetAlls(name, code);
+            var data = holderBusiness.GetAlls(name, code, true);
             var lstHolder = new List<HolderDto>();
             var vb = new VoteBusiness();
             var hvb = new HolderVoteBusiness();
@@ -137,7 +137,7 @@ namespace UI
         {
             var dataRowView = (DataRowView)gvHolderVote.GetRow(gvHolderVote.FocusedRowHandle);
             var holder = dataRowView.Row.Table.Rows.Cast<HolderMeetingDataSet.HolderRow>().ToList()[0];
-            
+
             var vb = new VoteBusiness();
             var hvb = new HolderVoteBusiness();
 

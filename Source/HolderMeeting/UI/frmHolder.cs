@@ -33,10 +33,12 @@ namespace UI
         void LoadStatusStrip()
         {
             var hb = new HolderBusiness();
+            var cb = new CompanyBusiness();
             var totalIsConfirm = hb.TotalConfirm(true);
             var totalConfirm = hb.TotalConfirm(null);
             var totalShareIsConfirm = hb.TotalShareIsConfirm(true);
-            var totalShare = hb.TotalShareIsConfirm(null);
+            //var totalShare = hb.TotalShareIsConfirm(null);
+            var totalShare = cb.Detail().TotalShare.Value;
 
             var str = "Số cổ đông tham gia: " + string.Format("{0:#,###}", totalIsConfirm) + "/" + string.Format("{0:#,###}", totalConfirm) + " =  " + Math.Round((decimal)totalIsConfirm * 100 / totalConfirm, 2) + "% | Tổng số cổ phiếu tham gia: " +
                        string.Format("{0:#,###}", totalShareIsConfirm) + "/" + string.Format("{0:#,###}", totalShare) + " =  " + Math.Round((decimal)totalShareIsConfirm * 100 / totalShare, 2) + "%";
@@ -46,7 +48,7 @@ namespace UI
         void LoadData(string name, string code)
         {
             var holderBusiness = new HolderBusiness();
-            var data = holderBusiness.GetAlls(name, code);
+            var data = holderBusiness.GetAlls(name, code, null);
             var lstHolder = new List<HolderDto>();
             foreach (var holder in data)
             {
@@ -142,15 +144,19 @@ namespace UI
                     };
 
                     var hb = new HolderBusiness();
-                    if (hb.UpdateHolder(model))
-                    {
-                        MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK);
-                        LoadData(txtSName.Text.Trim(), txtSCode.Text.Trim());
-
-                        LoadStatusStrip();
-                    }
+                    var hvb = new HolderVoteBusiness();
+                    if (hvb.TotalSharedIsVote(_id) > 0)
+                        MessageBox.Show("Cổ đông đã biểu quyết, không thể thay đổi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        MessageBox.Show("Lỗi. Thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (hb.UpdateHolder(model))
+                        {
+                            MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK);
+                            LoadData(txtSName.Text.Trim(), txtSCode.Text.Trim());
+
+                            LoadStatusStrip();
+                        }
+                        else
+                            MessageBox.Show("Lỗi. Thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else MessageBox.Show("Chưa chọn item", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
