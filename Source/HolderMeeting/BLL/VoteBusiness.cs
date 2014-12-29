@@ -14,7 +14,7 @@ namespace BLL
 
         public VoteBusiness()
         {
-            _holderMeetingEntities = new HolderMeetingEntities(MyConstant.Config.connectionString);
+            _holderMeetingEntities = new HolderMeetingEntities(BoConstant.Config.ConnectionString);
         }
 
         /// <summary>
