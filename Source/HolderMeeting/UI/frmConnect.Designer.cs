@@ -31,7 +31,13 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtIp = new DevExpress.XtraEditors.TextEdit();
             this.btnConnect = new DevExpress.XtraEditors.SimpleButton();
+            this.txtUser = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.txtPass = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtIp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -45,26 +51,62 @@
             // txtIp
             // 
             this.txtIp.EditValue = "192.168.1.2";
-            this.txtIp.Location = new System.Drawing.Point(94, 10);
+            this.txtIp.Location = new System.Drawing.Point(102, 10);
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(102, 20);
             this.txtIp.TabIndex = 1;
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(212, 6);
+            this.btnConnect.Location = new System.Drawing.Point(222, 29);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 28);
+            this.btnConnect.Size = new System.Drawing.Size(75, 33);
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "Kết nối";
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // txtUser
+            // 
+            this.txtUser.EditValue = "";
+            this.txtUser.Location = new System.Drawing.Point(102, 36);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(102, 20);
+            this.txtUser.TabIndex = 4;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(13, 39);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(76, 13);
+            this.labelControl2.TabIndex = 3;
+            this.labelControl2.Text = "Tên đăng nhập:";
+            // 
+            // txtPass
+            // 
+            this.txtPass.EditValue = "";
+            this.txtPass.Location = new System.Drawing.Point(102, 62);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(102, 20);
+            this.txtPass.TabIndex = 6;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(13, 65);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(48, 13);
+            this.labelControl3.TabIndex = 5;
+            this.labelControl3.Text = "Mật khẩu:";
             // 
             // frmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 44);
+            this.ClientSize = new System.Drawing.Size(306, 100);
             this.ControlBox = false;
+            this.Controls.Add(this.txtPass);
+            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.txtUser);
+            this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.txtIp);
             this.Controls.Add(this.labelControl1);
@@ -72,6 +114,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kết nối";
             ((System.ComponentModel.ISupportInitialize)(this.txtIp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,5 +126,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtIp;
         private DevExpress.XtraEditors.SimpleButton btnConnect;
+        private DevExpress.XtraEditors.TextEdit txtUser;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit txtPass;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

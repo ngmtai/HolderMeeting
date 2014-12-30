@@ -10,10 +10,9 @@ namespace BLL.Common
     {
         public class Config
         {
-            //public static string ConnectionString = ConfigurationManager.ConnectionStrings["HolderMeetingEntities"].ConnectionString;
-
-            public static string ConnectionString =
-                "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source={0};initial catalog=HolderMeeting;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;";
+            public static string ConnectionNonAuthor = "integrated security=True";
+            public static string ConnectionAuthorize = "user id={0}; password={1}";
+            public static string ConnectionString = "Data source={0};initial catalog=HolderMeeting;{1};MultipleActiveResultSets=True";
         }
 
         public enum AnswerType

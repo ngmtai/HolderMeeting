@@ -25,7 +25,11 @@ namespace UI
                 txtIp.Focus();
                 return;
             }
-            BoConstant.Config.ConnectionString = string.Format(BoConstant.Config.ConnectionString, txtIp.Text);
+
+            if (!string.IsNullOrEmpty(txtUser.Text.Trim()) && !string.IsNullOrEmpty(txtPass.Text.Trim()))
+                BoConstant.Config.ConnectionString = string.Format(BoConstant.Config.ConnectionString, txtIp.Text, string.Format(BoConstant.Config.ConnectionAuthorize, txtUser.Text.Trim(), txtPass.Text.Trim()));
+            else
+                BoConstant.Config.ConnectionString = string.Format(BoConstant.Config.ConnectionString, txtIp.Text, BoConstant.Config.ConnectionNonAuthor);
 
             MessageBox.Show(BoCommon.IsConnect() ? "Kết nối thành công" : "Không kết nối được. Thử lại sau", "Thông báo",
                 MessageBoxButtons.OK);
