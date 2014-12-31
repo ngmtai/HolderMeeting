@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BLL;
+using BLL.Common;
 using BLL.Model;
 using DAL;
 using UI.HolderMeetingDataSetTableAdapters;
@@ -93,8 +94,17 @@ namespace UI
 
         #region protected
 
-        private void frmHolder_Load(object sender, EventArgs e)
+        private void frmHolder_Vote_Load(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(BoConstant.Config.ConnectionString))
+            {
+                MessageBox.Show("Chưa kết nối máy chủ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            holderTableAdapter.Connection.ConnectionString = BoConstant.Config.ConnectionString;
+            holder_VoteTableAdapter.Connection.ConnectionString = BoConstant.Config.ConnectionString;
+
             holderTableAdapter.Fill(holderMeetingDataSet.Holder);
             holder_VoteTableAdapter.Fill(holderMeetingDataSet.Holder_Vote);
 
@@ -130,6 +140,12 @@ namespace UI
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(BoConstant.Config.ConnectionString))
+            {
+                MessageBox.Show("Chưa kết nối máy chủ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
             LoadData(txtSName.Text.Trim(), txtSCode.Text.Trim());
         }
 

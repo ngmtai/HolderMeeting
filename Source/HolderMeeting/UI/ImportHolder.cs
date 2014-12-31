@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using BLL;
+using BLL.Common;
 using DAL;
 using UI.Common;
 
@@ -54,6 +55,12 @@ namespace UI
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(BoConstant.Config.ConnectionString))
+            {
+                MessageBox.Show("Chưa kết nối máy chủ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
             if (string.IsNullOrEmpty(txtFile.Text))
             {
                 MessageBox.Show("Chọn đường dẫn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

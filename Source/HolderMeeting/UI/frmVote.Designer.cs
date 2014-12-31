@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVote));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gridVote = new DevExpress.XtraGrid.GridControl();
             this.gvVote = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -40,15 +40,16 @@
             this.chkActive = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.numOrder = new System.Windows.Forms.NumericUpDown();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.memDisplayName = new DevExpress.XtraEditors.MemoEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.numOrder = new System.Windows.Forms.NumericUpDown();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridVote)).BeginInit();
@@ -57,9 +58,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memDisplayName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -155,13 +156,23 @@
             // 
             this.btnDelete.AutoHeight = false;
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Ưu tiên";
+            this.gridColumn4.FieldName = "Order";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnAdd);
             this.panelControl2.Controls.Add(this.numOrder);
             this.panelControl2.Controls.Add(this.labelControl3);
             this.panelControl2.Controls.Add(this.chkIsActive);
@@ -174,6 +185,21 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(578, 146);
             this.panelControl2.TabIndex = 3;
+            // 
+            // numOrder
+            // 
+            this.numOrder.Location = new System.Drawing.Point(202, 110);
+            this.numOrder.Name = "numOrder";
+            this.numOrder.Size = new System.Drawing.Size(58, 20);
+            this.numOrder.TabIndex = 13;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(139, 112);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(39, 13);
+            this.labelControl3.TabIndex = 12;
+            this.labelControl3.Text = "Ưu tiên:";
             // 
             // chkIsActive
             // 
@@ -200,9 +226,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(440, 51);
+            this.btnSave.Location = new System.Drawing.Point(440, 60);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(82, 38);
+            this.btnSave.Size = new System.Drawing.Size(82, 29);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -215,29 +241,14 @@
             this.labelControl1.TabIndex = 5;
             this.labelControl1.Text = "Tên:";
             // 
-            // labelControl3
+            // btnAdd
             // 
-            this.labelControl3.Location = new System.Drawing.Point(139, 112);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(39, 13);
-            this.labelControl3.TabIndex = 12;
-            this.labelControl3.Text = "Ưu tiên:";
-            // 
-            // numOrder
-            // 
-            this.numOrder.Location = new System.Drawing.Point(202, 110);
-            this.numOrder.Name = "numOrder";
-            this.numOrder.Size = new System.Drawing.Size(58, 20);
-            this.numOrder.TabIndex = 13;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Ưu tiên";
-            this.gridColumn4.FieldName = "Order";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.btnAdd.Location = new System.Drawing.Point(440, 14);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(82, 31);
+            this.btnAdd.TabIndex = 14;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // frmVote
             // 
@@ -258,9 +269,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memDisplayName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOrder)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,5 +297,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private System.Windows.Forms.NumericUpDown numOrder;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
     }
 }

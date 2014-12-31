@@ -13,7 +13,7 @@ namespace BLL
 
         public CompanyBusiness()
         {
-            _holderMeetingEntities = new HolderMeetingEntities(BoConstant.Config.ConnectionString);
+            _holderMeetingEntities = new HolderMeetingEntities(BoCommon.Connect());
         }
 
         /// <summary>

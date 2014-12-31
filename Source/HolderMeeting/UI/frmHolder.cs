@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BLL;
+using BLL.Common;
 using BLL.Model;
 using DAL;
 
@@ -75,6 +76,12 @@ namespace UI
 
         private void frmHolder_Load(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(BoConstant.Config.ConnectionString))
+            {
+                MessageBox.Show("Chưa kết nối máy chủ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
             LoadData(string.Empty, string.Empty);
 
             #region autocomplete

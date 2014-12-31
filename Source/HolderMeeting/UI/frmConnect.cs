@@ -27,12 +27,20 @@ namespace UI
             }
 
             if (!string.IsNullOrEmpty(txtUser.Text.Trim()) && !string.IsNullOrEmpty(txtPass.Text.Trim()))
-                BoConstant.Config.ConnectionString = string.Format(BoConstant.Config.ConnectionString, txtIp.Text, string.Format(BoConstant.Config.ConnectionAuthorize, txtUser.Text.Trim(), txtPass.Text.Trim()));
+                BoConstant.Config.ConnectionTemp = string.Format(BoConstant.Config.ConnectionString, txtIp.Text,
+                    string.Format(BoConstant.Config.ConnectionAuthorize, txtUser.Text.Trim(), txtPass.Text.Trim()));
             else
-                BoConstant.Config.ConnectionString = string.Format(BoConstant.Config.ConnectionString, txtIp.Text, BoConstant.Config.ConnectionNonAuthor);
+                BoConstant.Config.ConnectionTemp = string.Format(BoConstant.Config.ConnectionString, txtIp.Text,
+                    BoConstant.Config.ConnectionNonAuthor);
+            BoConstant.Config.ConnectionString = BoConstant.Config.ConnectionTemp;
 
-            MessageBox.Show(BoCommon.IsConnect() ? "Kết nối thành công" : "Không kết nối được. Thử lại sau", "Thông báo",
-                MessageBoxButtons.OK);
+            if (BoCommon.IsConnect())
+            {
+                MessageBox.Show("Kết nối thành công", "Thông báo", MessageBoxButtons.OK);
+                DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show("Không kết nối được", "Thông báo", MessageBoxButtons.OK);
         }
     }
 }

@@ -25,5 +25,17 @@ namespace BLL.Common
 
             return result;
         }
+
+        public static string Connect()
+        {
+            var entityString = new EntityConnectionStringBuilder()
+            {
+                Provider = "System.Data.SqlClient",
+                Metadata = "res://*/HolderMeetingModel.csdl|res://*/HolderMeetingModel.ssdl|res://*/HolderMeetingModel.msl",
+                ProviderConnectionString = BoConstant.Config.ConnectionString
+            };
+
+            return entityString.ConnectionString;
+        }
     }
 }

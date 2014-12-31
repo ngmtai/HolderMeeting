@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -41,13 +41,13 @@
             this.holderMeetingDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.holderMeetingDataSet = new UI.HolderMeetingDataSet();
             this.gvHolderVote = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -134,10 +134,10 @@
             this.gridHolderVote.Cursor = System.Windows.Forms.Cursors.Default;
             this.gridHolderVote.DataSource = this.holderBindingSource;
             this.gridHolderVote.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.gridDetail;
-            gridLevelNode1.RelationName = "FK_Holder_Vote_Holder";
+            gridLevelNode2.LevelTemplate = this.gridDetail;
+            gridLevelNode2.RelationName = "FK_Holder_Vote_Holder";
             this.gridHolderVote.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.gridHolderVote.Location = new System.Drawing.Point(2, 2);
             this.gridHolderVote.MainView = this.gvHolderVote;
             this.gridHolderVote.Name = "gridHolderVote";
@@ -182,6 +182,13 @@
             this.gvHolderVote.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gvHolderVote.OptionsCustomization.AllowGroup = false;
             this.gvHolderVote.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Id";
+            this.gridColumn7.FieldName = "Id";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn1
             // 
@@ -235,13 +242,6 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 4;
             // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Id";
-            this.gridColumn7.FieldName = "Id";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "CreateDate";
@@ -268,7 +268,7 @@
             // 
             this.btnRowVote.AutoHeight = false;
             this.btnRowVote.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Biểu quyết", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::UI.Properties.Resources.edittask_32x32, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Biểu quyết", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::UI.Properties.Resources.edittask_32x32, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.btnRowVote.Name = "btnRowVote";
             this.btnRowVote.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnRowVote.Click += new System.EventHandler(this.btnRowVote_Click);
@@ -384,7 +384,7 @@
             this.Controls.Add(this.panelControl1);
             this.Name = "frmHolder_Vote";
             this.Text = "Danh sách cổ đông biểu quyết";
-            this.Load += new System.EventHandler(this.frmHolder_Load);
+            this.Load += new System.EventHandler(this.frmHolder_Vote_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHolderVote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.holderBindingSource)).EndInit();
