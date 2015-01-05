@@ -29,7 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVote));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.numOrder = new System.Windows.Forms.NumericUpDown();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.memDisplayName = new DevExpress.XtraEditors.MemoEdit();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gridVote = new DevExpress.XtraGrid.GridControl();
             this.gvVote = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -41,36 +50,107 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.numOrder = new System.Windows.Forms.NumericUpDown();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.memDisplayName = new DevExpress.XtraEditors.MemoEdit();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memDisplayName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridVote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActive)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numOrder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memDisplayName.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.btnAdd);
+            this.panelControl2.Controls.Add(this.numOrder);
+            this.panelControl2.Controls.Add(this.labelControl3);
+            this.panelControl2.Controls.Add(this.chkIsActive);
+            this.panelControl2.Controls.Add(this.labelControl2);
+            this.panelControl2.Controls.Add(this.memDisplayName);
+            this.panelControl2.Controls.Add(this.btnSave);
+            this.panelControl2.Controls.Add(this.labelControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(849, 146);
+            this.panelControl2.TabIndex = 3;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(440, 14);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(82, 31);
+            this.btnAdd.TabIndex = 14;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // numOrder
+            // 
+            this.numOrder.Location = new System.Drawing.Point(202, 110);
+            this.numOrder.Name = "numOrder";
+            this.numOrder.Size = new System.Drawing.Size(58, 20);
+            this.numOrder.TabIndex = 13;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(139, 112);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(39, 13);
+            this.labelControl3.TabIndex = 12;
+            this.labelControl3.Text = "Ưu tiên:";
+            // 
+            // chkIsActive
+            // 
+            this.chkIsActive.Location = new System.Drawing.Point(69, 109);
+            this.chkIsActive.Name = "chkIsActive";
+            this.chkIsActive.Properties.Caption = "";
+            this.chkIsActive.Size = new System.Drawing.Size(75, 19);
+            this.chkIsActive.TabIndex = 11;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(12, 112);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(40, 13);
+            this.labelControl2.TabIndex = 10;
+            this.labelControl2.Text = "Hiển thị:";
+            // 
+            // memDisplayName
+            // 
+            this.memDisplayName.Location = new System.Drawing.Point(69, 12);
+            this.memDisplayName.Name = "memDisplayName";
+            this.memDisplayName.Size = new System.Drawing.Size(345, 77);
+            this.memDisplayName.TabIndex = 9;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(440, 60);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(82, 29);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(12, 41);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(22, 13);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "Tên:";
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.gridVote);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 169);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 146);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(578, 248);
-            this.panelControl1.TabIndex = 2;
+            this.panelControl1.Size = new System.Drawing.Size(849, 271);
+            this.panelControl1.TabIndex = 4;
             // 
             // gridVote
             // 
@@ -82,8 +162,8 @@
             this.gridVote.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDelete,
             this.chkActive});
-            this.gridVote.Size = new System.Drawing.Size(574, 244);
-            this.gridVote.TabIndex = 0;
+            this.gridVote.Size = new System.Drawing.Size(845, 267);
+            this.gridVote.TabIndex = 1;
             this.gridVote.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvVote});
             // 
@@ -143,7 +223,6 @@
             // 
             this.chkActive.AutoHeight = false;
             this.chkActive.Name = "chkActive";
-            this.chkActive.CheckedChanged += new System.EventHandler(this.chkActive_CheckedChanged);
             // 
             // gridColumn9
             // 
@@ -156,10 +235,9 @@
             // 
             this.btnDelete.AutoHeight = false;
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
             // 
             // gridColumn4
             // 
@@ -170,133 +248,54 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.btnAdd);
-            this.panelControl2.Controls.Add(this.numOrder);
-            this.panelControl2.Controls.Add(this.labelControl3);
-            this.panelControl2.Controls.Add(this.chkIsActive);
-            this.panelControl2.Controls.Add(this.labelControl2);
-            this.panelControl2.Controls.Add(this.memDisplayName);
-            this.panelControl2.Controls.Add(this.btnSave);
-            this.panelControl2.Controls.Add(this.labelControl1);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(578, 146);
-            this.panelControl2.TabIndex = 3;
-            // 
-            // numOrder
-            // 
-            this.numOrder.Location = new System.Drawing.Point(202, 110);
-            this.numOrder.Name = "numOrder";
-            this.numOrder.Size = new System.Drawing.Size(58, 20);
-            this.numOrder.TabIndex = 13;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(139, 112);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(39, 13);
-            this.labelControl3.TabIndex = 12;
-            this.labelControl3.Text = "Ưu tiên:";
-            // 
-            // chkIsActive
-            // 
-            this.chkIsActive.Location = new System.Drawing.Point(69, 109);
-            this.chkIsActive.Name = "chkIsActive";
-            this.chkIsActive.Properties.Caption = "";
-            this.chkIsActive.Size = new System.Drawing.Size(75, 19);
-            this.chkIsActive.TabIndex = 11;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(12, 112);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(40, 13);
-            this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "Hiển thị:";
-            // 
-            // memDisplayName
-            // 
-            this.memDisplayName.Location = new System.Drawing.Point(69, 12);
-            this.memDisplayName.Name = "memDisplayName";
-            this.memDisplayName.Size = new System.Drawing.Size(345, 77);
-            this.memDisplayName.TabIndex = 9;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(440, 60);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(82, 29);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(12, 41);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(22, 13);
-            this.labelControl1.TabIndex = 5;
-            this.labelControl1.Text = "Tên:";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(440, 14);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(82, 31);
-            this.btnAdd.TabIndex = 14;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // frmVote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 417);
-            this.Controls.Add(this.panelControl2);
+            this.ClientSize = new System.Drawing.Size(849, 417);
             this.Controls.Add(this.panelControl1);
+            this.Controls.Add(this.panelControl2);
             this.Name = "frmVote";
             this.Text = "Biểu Quyết";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmVote_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridVote)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvVote)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActive)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memDisplayName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridVote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActive)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.MemoEdit memDisplayName;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.CheckEdit chkIsActive;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.NumericUpDown numOrder;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gridVote;
         private DevExpress.XtraGrid.Views.Grid.GridView gvVote;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.MemoEdit memDisplayName;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chkActive;
-        private DevExpress.XtraEditors.CheckEdit chkIsActive;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private System.Windows.Forms.NumericUpDown numOrder;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
     }
 }

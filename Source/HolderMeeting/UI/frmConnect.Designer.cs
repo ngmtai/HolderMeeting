@@ -56,6 +56,7 @@
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(102, 20);
             this.txtIp.TabIndex = 1;
+            this.txtIp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIp_KeyDown);
             // 
             // btnConnect
             // 
@@ -73,6 +74,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(102, 20);
             this.txtUser.TabIndex = 4;
+            this.txtUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIp_KeyDown);
             // 
             // labelControl2
             // 
@@ -89,6 +91,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(102, 20);
             this.txtPass.TabIndex = 6;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIp_KeyDown);
             // 
             // labelControl3
             // 

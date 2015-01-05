@@ -79,13 +79,8 @@ namespace UI
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (
-                MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                bgw.Dispose();
-                Dispose();
-            }
+            bgw.Dispose();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void bgw_DoWork(object sender, DoWorkEventArgs e)
@@ -196,5 +191,6 @@ namespace UI
         }
 
         #endregion
+
     }
 }

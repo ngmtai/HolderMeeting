@@ -169,6 +169,12 @@ namespace UI
                     MessageBox.Show("Cổ đông \"" + holder.Name + "\" đã biểu quyết hoàn tất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void txtSCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnSearch.PerformClick();
+        }
+
         #endregion
 
     }

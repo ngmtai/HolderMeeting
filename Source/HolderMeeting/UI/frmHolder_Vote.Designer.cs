@@ -52,9 +52,6 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnRowVote = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.stTotal = new System.Windows.Forms.StatusStrip();
-            this.tstt = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -65,6 +62,9 @@
             this.holderTableAdapter = new UI.HolderMeetingDataSetTableAdapters.HolderTableAdapter();
             this.holderVoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.holder_VoteTableAdapter = new UI.HolderMeetingDataSetTableAdapters.Holder_VoteTableAdapter();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.stTotal = new System.Windows.Forms.StatusStrip();
+            this.tstt = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHolderVote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.holderBindingSource)).BeginInit();
@@ -72,9 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.holderMeetingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHolderVote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRowVote)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            this.stTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -82,6 +79,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.holderVoteBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            this.stTotal.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridDetail
@@ -143,8 +143,8 @@
             this.gridHolderVote.Name = "gridHolderVote";
             this.gridHolderVote.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnRowVote});
-            this.gridHolderVote.Size = new System.Drawing.Size(822, 314);
-            this.gridHolderVote.TabIndex = 0;
+            this.gridHolderVote.Size = new System.Drawing.Size(822, 319);
+            this.gridHolderVote.TabIndex = 2;
             this.gridHolderVote.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvHolderVote,
             this.gridDetail});
@@ -182,6 +182,7 @@
             this.gvHolderVote.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gvHolderVote.OptionsCustomization.AllowGroup = false;
             this.gvHolderVote.OptionsView.ShowGroupPanel = false;
+            this.gvHolderVote.Click += new System.EventHandler(this.btnRowVote_Click);
             // 
             // gridColumn7
             // 
@@ -273,32 +274,6 @@
             this.btnRowVote.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnRowVote.Click += new System.EventHandler(this.btnRowVote_Click);
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.stTotal);
-            this.panelControl1.Controls.Add(this.gridHolderVote);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 113);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(826, 318);
-            this.panelControl1.TabIndex = 1;
-            // 
-            // stTotal
-            // 
-            this.stTotal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tstt});
-            this.stTotal.Location = new System.Drawing.Point(2, 294);
-            this.stTotal.Name = "stTotal";
-            this.stTotal.Size = new System.Drawing.Size(822, 22);
-            this.stTotal.TabIndex = 1;
-            this.stTotal.Text = "aBc";
-            // 
-            // tstt
-            // 
-            this.tstt.Name = "tstt";
-            this.tstt.Size = new System.Drawing.Size(26, 17);
-            this.tstt.Text = "aBc";
-            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.groupControl1);
@@ -337,6 +312,7 @@
             this.txtSName.Name = "txtSName";
             this.txtSName.Size = new System.Drawing.Size(194, 20);
             this.txtSName.TabIndex = 2;
+            this.txtSName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSCode_KeyDown);
             // 
             // labelControl2
             // 
@@ -352,6 +328,7 @@
             this.txtSCode.Name = "txtSCode";
             this.txtSCode.Size = new System.Drawing.Size(204, 20);
             this.txtSCode.TabIndex = 1;
+            this.txtSCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSCode_KeyDown);
             // 
             // labelControl1
             // 
@@ -374,14 +351,40 @@
             // 
             this.holder_VoteTableAdapter.ClearBeforeFill = true;
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.stTotal);
+            this.panelControl1.Controls.Add(this.gridHolderVote);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 108);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(826, 323);
+            this.panelControl1.TabIndex = 3;
+            // 
+            // stTotal
+            // 
+            this.stTotal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tstt});
+            this.stTotal.Location = new System.Drawing.Point(2, 299);
+            this.stTotal.Name = "stTotal";
+            this.stTotal.Size = new System.Drawing.Size(822, 22);
+            this.stTotal.TabIndex = 3;
+            this.stTotal.Text = "aBc";
+            // 
+            // tstt
+            // 
+            this.tstt.Name = "tstt";
+            this.tstt.Size = new System.Drawing.Size(26, 17);
+            this.tstt.Text = "aBc";
+            // 
             // frmHolder_Vote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(826, 431);
-            this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
+            this.Controls.Add(this.panelControl2);
             this.Name = "frmHolder_Vote";
             this.Text = "Danh sách cổ đông biểu quyết";
             this.Load += new System.EventHandler(this.frmHolder_Vote_Load);
@@ -392,11 +395,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.holderMeetingDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHolderVote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRowVote)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
-            this.stTotal.ResumeLayout(false);
-            this.stTotal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -405,22 +403,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.holderVoteBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            this.stTotal.ResumeLayout(false);
+            this.stTotal.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridHolderVote;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvHolderVote;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
@@ -428,23 +421,33 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtSCode;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private System.Windows.Forms.StatusStrip stTotal;
-        private System.Windows.Forms.ToolStripStatusLabel tstt;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridDetail;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnRowVote;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private System.Windows.Forms.BindingSource holderMeetingDataSetBindingSource;
         private HolderMeetingDataSet holderMeetingDataSet;
         private System.Windows.Forms.BindingSource holderBindingSource;
         private HolderMeetingDataSetTableAdapters.HolderTableAdapter holderTableAdapter;
         private System.Windows.Forms.BindingSource holderVoteBindingSource;
         private HolderMeetingDataSetTableAdapters.Holder_VoteTableAdapter holder_VoteTableAdapter;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.StatusStrip stTotal;
+        private System.Windows.Forms.ToolStripStatusLabel tstt;
+        private DevExpress.XtraGrid.GridControl gridHolderVote;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridDetail;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvHolderVote;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnRowVote;
 
     }
 }

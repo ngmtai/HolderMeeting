@@ -27,10 +27,10 @@ namespace UI
             }
 
             if (!string.IsNullOrEmpty(txtUser.Text.Trim()) && !string.IsNullOrEmpty(txtPass.Text.Trim()))
-                BoConstant.Config.ConnectionTemp = string.Format(BoConstant.Config.ConnectionString, txtIp.Text,
+                BoConstant.Config.ConnectionTemp = string.Format(BoConstant.Config.ConnectionTemp, txtIp.Text,
                     string.Format(BoConstant.Config.ConnectionAuthorize, txtUser.Text.Trim(), txtPass.Text.Trim()));
             else
-                BoConstant.Config.ConnectionTemp = string.Format(BoConstant.Config.ConnectionString, txtIp.Text,
+                BoConstant.Config.ConnectionTemp = string.Format(BoConstant.Config.ConnectionTemp, txtIp.Text,
                     BoConstant.Config.ConnectionNonAuthor);
             BoConstant.Config.ConnectionString = BoConstant.Config.ConnectionTemp;
 
@@ -41,6 +41,12 @@ namespace UI
             }
             else
                 MessageBox.Show("Không kết nối được", "Thông báo", MessageBoxButtons.OK);
+        }
+
+        private void txtIp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnConnect.PerformClick();
         }
     }
 }

@@ -32,15 +32,15 @@
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.mniConnect = new System.Windows.Forms.ToolStripMenuItem();
             this.mniHolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.cổĐôngThamGiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tỉLệBiểuQuyếtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.mdiParentManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.mniImport = new System.Windows.Forms.ToolStripMenuItem();
             this.mniList = new System.Windows.Forms.ToolStripMenuItem();
             this.mniVote = new System.Windows.Forms.ToolStripMenuItem();
             this.mniHolderVote = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniPercentHolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniPercentVote = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.mdiParentManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.mnMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mdiParentManager)).BeginInit();
             this.SuspendLayout();
@@ -75,38 +75,7 @@
             this.mniHolder.Name = "mniHolder";
             this.mniHolder.Size = new System.Drawing.Size(65, 20);
             this.mniHolder.Text = "Cổ đông";
-            // 
-            // mniReport
-            // 
-            this.mniReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cổĐôngThamGiaToolStripMenuItem,
-            this.tỉLệBiểuQuyếtToolStripMenuItem});
-            this.mniReport.Name = "mniReport";
-            this.mniReport.Size = new System.Drawing.Size(69, 20);
-            this.mniReport.Text = "Thống kê";
-            // 
-            // cổĐôngThamGiaToolStripMenuItem
-            // 
-            this.cổĐôngThamGiaToolStripMenuItem.Name = "cổĐôngThamGiaToolStripMenuItem";
-            this.cổĐôngThamGiaToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.cổĐôngThamGiaToolStripMenuItem.Text = "Tỉ lệ tham gia";
-            // 
-            // tỉLệBiểuQuyếtToolStripMenuItem
-            // 
-            this.tỉLệBiểuQuyếtToolStripMenuItem.Name = "tỉLệBiểuQuyếtToolStripMenuItem";
-            this.tỉLệBiểuQuyếtToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.tỉLệBiểuQuyếtToolStripMenuItem.Text = "Tỉ lệ biểu quyết";
-            // 
-            // mniAbout
-            // 
-            this.mniAbout.Name = "mniAbout";
-            this.mniAbout.Size = new System.Drawing.Size(52, 20);
-            this.mniAbout.Text = "About";
-            this.mniAbout.Click += new System.EventHandler(this.mniAbout_Click);
-            // 
-            // mdiParentManager
-            // 
-            this.mdiParentManager.MdiParent = this;
+            this.mniHolder.Visible = false;
             // 
             // mniImport
             // 
@@ -120,18 +89,59 @@
             this.mniList.Name = "mniList";
             this.mniList.Size = new System.Drawing.Size(176, 22);
             this.mniList.Text = "Danh sách cổ đông";
+            this.mniList.Click += new System.EventHandler(this.mniList_Click);
             // 
             // mniVote
             // 
             this.mniVote.Name = "mniVote";
             this.mniVote.Size = new System.Drawing.Size(75, 20);
             this.mniVote.Text = "Biều quyết";
+            this.mniVote.Visible = false;
+            this.mniVote.Click += new System.EventHandler(this.mniVote_Click);
             // 
             // mniHolderVote
             // 
             this.mniHolderVote.Name = "mniHolderVote";
             this.mniHolderVote.Size = new System.Drawing.Size(124, 20);
             this.mniHolderVote.Text = "Cổ đông biểu quyết";
+            this.mniHolderVote.Visible = false;
+            this.mniHolderVote.Click += new System.EventHandler(this.mniHolderVote_Click);
+            // 
+            // mniReport
+            // 
+            this.mniReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mniPercentHolder,
+            this.mniPercentVote});
+            this.mniReport.Name = "mniReport";
+            this.mniReport.Size = new System.Drawing.Size(69, 20);
+            this.mniReport.Text = "Thống kê";
+            this.mniReport.Visible = false;
+            // 
+            // mniPercentHolder
+            // 
+            this.mniPercentHolder.Name = "mniPercentHolder";
+            this.mniPercentHolder.Size = new System.Drawing.Size(155, 22);
+            this.mniPercentHolder.Text = "Tỉ lệ tham gia";
+            this.mniPercentHolder.Click += new System.EventHandler(this.mniPercentHolder_Click);
+            // 
+            // mniPercentVote
+            // 
+            this.mniPercentVote.Name = "mniPercentVote";
+            this.mniPercentVote.Size = new System.Drawing.Size(155, 22);
+            this.mniPercentVote.Text = "Tỉ lệ biểu quyết";
+            this.mniPercentVote.Click += new System.EventHandler(this.mniPercentVote_Click);
+            // 
+            // mniAbout
+            // 
+            this.mniAbout.Name = "mniAbout";
+            this.mniAbout.Size = new System.Drawing.Size(52, 20);
+            this.mniAbout.Text = "About";
+            this.mniAbout.Visible = false;
+            this.mniAbout.Click += new System.EventHandler(this.mniAbout_Click);
+            // 
+            // mdiParentManager
+            // 
+            this.mdiParentManager.MdiParent = this;
             // 
             // Main
             // 
@@ -143,7 +153,7 @@
             this.MainMenuStrip = this.mnMain;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
+            this.Text = "Đại Hội Cổ Đông";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
             this.mnMain.ResumeLayout(false);
@@ -160,8 +170,8 @@
         private System.Windows.Forms.ToolStripMenuItem mniConnect;
         private System.Windows.Forms.ToolStripMenuItem mniHolder;
         private System.Windows.Forms.ToolStripMenuItem mniReport;
-        private System.Windows.Forms.ToolStripMenuItem cổĐôngThamGiaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tỉLệBiểuQuyếtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mniPercentHolder;
+        private System.Windows.Forms.ToolStripMenuItem mniPercentVote;
         private System.Windows.Forms.ToolStripMenuItem mniAbout;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdiParentManager;
         private System.Windows.Forms.ToolStripMenuItem mniImport;

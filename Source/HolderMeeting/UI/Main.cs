@@ -59,13 +59,7 @@ namespace UI
 
         #endregion
 
-        private void mniAbout_Click(object sender, EventArgs e)
-        {
-            var frm = new frmAbout();
-            var result = frm.ShowDialog();
-            if (result == DialogResult.Cancel)
-                frm.Dispose();
-        }
+        #region event
 
         private void mniConnect_Click(object sender, EventArgs e)
         {
@@ -75,9 +69,8 @@ namespace UI
             {
                 case DialogResult.OK:
                     frm.Dispose();
-                    LoadHolder();
-                    LoadVote();
-                    LoadHolderVote();
+                    mniHolder.Visible =
+                        mniVote.Visible = mniHolderVote.Visible = mniReport.Visible = mniAbout.Visible = true;
                     mnMain.Visible = true;
 
                     break;
@@ -91,15 +84,6 @@ namespace UI
 
         private void Main_Load(object sender, EventArgs e)
         {
-            try
-            {
-                AddChildMdi<frmHolder>();
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
         }
 
         private void mniImport_Click(object sender, EventArgs e)
@@ -109,5 +93,42 @@ namespace UI
             if (result == DialogResult.Cancel)
                 frm.Dispose();
         }
+
+        private void mniList_Click(object sender, EventArgs e)
+        {
+            AddChildMdi<frmHolder>();
+        }
+
+        private void mniVote_Click(object sender, EventArgs e)
+        {
+            AddChildMdi<frmVote>();
+        }
+
+        private void mniHolderVote_Click(object sender, EventArgs e)
+        {
+            AddChildMdi<frmHolder_Vote>();
+        }
+
+        private void mniAbout_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAbout();
+            var result = frm.ShowDialog();
+            if (result == DialogResult.Cancel)
+                frm.Dispose();
+        }
+
+        private void mniPercentHolder_Click(object sender, EventArgs e)
+        {
+            var frm = new ReportCondition();
+            frm.Show();
+        }
+
+        private void mniPercentVote_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
     }
 }

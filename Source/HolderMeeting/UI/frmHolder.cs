@@ -174,6 +174,18 @@ namespace UI
             LoadData(txtSName.Text.Trim(), txtSCode.Text.Trim());
         }
 
+        private void txtSCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnSearch.PerformClick();
+        }
+
+        private void txtAuthorizerName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnChange.PerformClick();
+        }
+
         #endregion
 
     }
